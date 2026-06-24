@@ -1,0 +1,91 @@
+{% extends 'booking/base.html' %}
+
+{% block content %}
+
+<div class="payment-card">
+
+    <h1>🎟 Seats Reserved</h1>
+
+    <p>
+        Complete payment within
+    </p>
+
+    <h2 id="timer">
+        02:00
+    </h2>
+
+    <a href="{% url 'confirm_payment' %}">
+        <button class="btn btn-success btn-lg mt-3">
+            💳 Pay Now
+        </button>
+    </a>
+
+</div>
+
+<script>
+
+let time=120;
+
+let interval=setInterval(function(){
+
+    let minutes=Math.floor(time/60);
+    let seconds=time%60;
+
+    if(seconds<10){
+        seconds='0'+seconds;
+    }
+
+    document.getElementById("timer").innerHTML=
+        minutes+":"+seconds;
+
+    if(time<=0){
+
+        clearInterval(interval);
+
+        document.body.innerHTML=`
+
+        <div style="
+        min-height:100vh;
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        background:linear-gradient(135deg,#141e30,#243b55);
+        font-family:'Segoe UI',sans-serif;
+        ">
+
+            <div style="
+            background:rgba(255,255,255,0.08);
+            padding:60px;
+            border-radius:25px;
+            text-align:center;
+            color:white;
+            box-shadow:0 10px 30px rgba(0,0,0,0.4);
+            ">
+
+                <h1>⏰ Reservation Expired</h1>
+
+                <p style="font-size:20px;color:#d1d5db;">
+                    Your seats have been released automatically.
+                </p>
+
+                <br>
+
+                <a href="/">
+                    <button class="btn btn-primary btn-lg">
+                        🎬 Book Again
+                    </button>
+                </a>
+
+            </div>
+
+        </div>
+        `;
+    }
+
+    time--;
+
+},1000);
+
+</script>
+
+{% endblock %}

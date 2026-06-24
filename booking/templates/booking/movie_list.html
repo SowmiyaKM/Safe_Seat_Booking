@@ -1,0 +1,43 @@
+{% extends 'booking/base.html' %}
+
+{% block content %}
+
+<h1 class="text-center mb-5">
+    Movies
+</h1>
+
+<div class="row">
+
+    {% for movie in movies %}
+
+    <div class="col-md-4 mb-4">
+
+        <div class="card shadow">
+
+            <div class="card-body">
+
+                <h3>{{movie.title}}</h3>
+
+                <p>
+                    Duration:
+                    {{movie.duration}} minutes
+                </p>
+
+                <a href="{% url 'show_list' movie.id %}"
+                   class="btn btn-primary">
+
+                    View Shows
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    {% endfor %}
+
+</div>
+
+{% endblock %}

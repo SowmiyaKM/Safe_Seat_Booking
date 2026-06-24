@@ -1,0 +1,48 @@
+{% extends 'booking/base.html' %}
+
+{% block content %}
+
+<h1 class="text-center mb-5">
+    {{movie.title}}
+</h1>
+
+<div class="row">
+
+    {% for show in shows %}
+
+    <div class="col-md-4 mb-4">
+
+        <div class="card shadow border-0">
+
+            <div class="card-body">
+
+                <h4 class="card-title">
+                    {{show.theater.name}}
+                </h4>
+
+               <p class="show-time-text">
+    Show Time
+</p>
+
+                <h5>
+                    {{show.show_time}}
+                </h5>
+
+                <a href="{% url 'seat_list' show.id %}"
+                   class="btn btn-success">
+
+                    Select Seats
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    {% endfor %}
+
+</div>
+
+{% endblock %}

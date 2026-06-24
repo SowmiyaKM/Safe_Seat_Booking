@@ -1,0 +1,75 @@
+{% extends 'booking/base.html' %}
+
+{% block content %}
+
+<h1 class="mb-4">Select Seats</h1>
+
+<div class="screen">
+    SCREEN
+</div>
+
+<form method="post">
+    {% csrf_token %}
+
+    <div class="seat-container">
+
+        {% for seat in seats %}
+
+            {% if seat.status == 'AVAILABLE' %}
+
+                <label class="seat-label">
+                    <input type="checkbox"
+                           name="seat_ids"
+                           value="{{seat.id}}">
+
+                    <div class="seat available">
+                        {{seat.seat_number}}
+                    </div>
+                </label>
+
+            {% elif seat.status == 'RESERVED' %}
+
+                <div class="seat reserved">
+                    {{seat.seat_number}}
+                </div>
+
+            {% else %}
+
+                <div class="seat booked">
+                    {{seat.seat_number}}
+                </div>
+
+            {% endif %}
+
+        {% endfor %}
+
+    </div>
+
+    <div class="text-center mt-5">
+        <button class="btn btn-success btn-lg">
+            Reserve Seats
+        </button>
+    </div>
+
+</form>
+
+<div class="legend mt-5">
+
+    <div>
+        <span class="seat-demo available"></span>
+        Available
+    </div>
+
+    <div>
+        <span class="seat-demo reserved"></span>
+        Reserved
+    </div>
+
+    <div>
+        <span class="seat-demo booked"></span>
+        Booked
+    </div>
+
+</div>
+
+{% endblock %}
