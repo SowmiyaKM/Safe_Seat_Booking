@@ -1,0 +1,6 @@
+services:
+  - type: web
+    name: seatreservationsystem
+    env: python
+    buildCommand: "./build.sh"
+    startCommand: "gunicorn SeatReservationSystem.wsgi:application"
