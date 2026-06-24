@@ -88,3 +88,7 @@ LOGOUT_REDIRECT_URL = '/accounts/login/'
 
 # IMPORTANT FOR RENDER HTTPS
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
+CSRF_TRUSTED_ORIGINS = [
+    "https://*.onrender.com"
+]
