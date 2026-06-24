@@ -1,6 +1,6 @@
 services:
   - type: web
-    name: seatreservationsystem
+    name: SeatReservationSystem
     env: python
-    buildCommand: "./build.sh"
-    startCommand: "gunicorn SeatReservationSystem.wsgi:application"
+    buildCommand: pip install -r requirements.txt && python manage.py migrate && python manage.py collectstatic --noinput
+    startCommand: gunicorn SeatReservationSystem.wsgi:application
